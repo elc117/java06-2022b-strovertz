@@ -12,7 +12,7 @@ class Assignment {
     this.dueDate = dueDate;
     this.description = description;
     this.submitDate = null;
-    this.pending = true;
+    this.pending = true; 
   }
 
   public String getDescription() {
@@ -35,7 +35,14 @@ class Assignment {
   }
 
   private String status() {
-    return "COMPLETE-ME";
+    if(!isPending()) {
+        return "Done";
+    }
+    else if ((isPending()) && daysLeft() < 0)
+    {
+        return "Late";
+    }
+    return "Due in:" + daysLeft();
   }
 
 
@@ -44,7 +51,9 @@ class Assignment {
     
   }
 
-  
+  public String toString() {
+    return "DueDate='" + this.dueDate + "'," + "Description='" + this.description + "'," + "pending='" + this.pending + "'," + "submitDate='" + this.submitDate +"'";
+  }
 
 }
 
@@ -52,7 +61,14 @@ class GroupAssignment extends Assignment {
   private String teamMates;
 
   public String message() {
-    return "COMPLETE-ME";
+    if(!isPending()) {
+        return "Group Assignment " + this.description + "done " + " - call " + teamMates ;
+    }
+    else if ((isPending()) && daysLeft() < 0)
+    {
+        return "Group Assignment " + this.description + "Late " + " - call " + teamMates;
+    }
+    return "Group Assignment " + this.description + "due in: " + daysLeft() + " - call " + teamMates;
   
   }
 
@@ -76,7 +92,7 @@ public class TrackAssignments {
 
     System.out.println("\n==> Printing all assignment **OBJECTS**:");
     for (Assignment item : list) {
-      System.out.println(item);
+      System.out.println(item.toString());
     }
 
 
