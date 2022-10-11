@@ -76,7 +76,7 @@ class GroupAssignment extends Assignment {
     super(dueDate, description);
     this.teamMates = teamMates;
   }
-
+    
   
 }
 
@@ -112,7 +112,12 @@ public class TrackAssignments {
       System.out.println(item.message());
     }
 
-    //System.out.println(x: "\n ");
+    int cont = 0;
+    for (Assignment item : list) {
+      if(item.isPending()) cont ++;
+    }
+    System.out.println( "\n Completed Assignments: " + cont);
+
     // COMPLETE-ME: count completed assignments
   }
   
